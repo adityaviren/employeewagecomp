@@ -4,10 +4,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class EmployeeWageComputation {
-	private final int wage_per_hour;
-	private final String company_name;
-	private final int max_no_of_hours;
-	private final int max_no_of_days;
+	private int wage_per_hour;
+	private String company_name;
+	private int max_no_of_hours;
+	private int max_no_of_days;
 
 	private static final int full_hours = 8;
 	private static final int part_hours = 8;
@@ -21,30 +21,14 @@ public class EmployeeWageComputation {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Scanner sc=new Scanner(System.in);
 		System.out.println("Welcome to employee wage computation programme");
-		for(int i=0;i<2;i++){
-			System.out.println("Enter company name");
-			String name=sc.nextLine();
-			System.out.println("Enter wage per hour");
-			int wage_per_hour=Integer.parseInt(sc.nextLine());
-			System.out.println("Enter maximum number of hours");
-			int max_hours=Integer.parseInt(sc.nextLine());
-			System.out.println("Enter maximum number of days");
-			int max_days=Integer.parseInt(sc.nextLine());
-			EmployeeWageComputation company = new EmployeeWageComputation(name,wage_per_hour,max_hours,max_days);
-			int daily_wage, no_of_days = 0, monthly_salary = 0, no_of_hours ,total_hours=0;
-			while (no_of_days < company.max_no_of_days && total_hours < company.max_no_of_hours) {
-			no_of_hours = employeeHours();
-			total_hours+=no_of_hours;
-			daily_wage = no_of_hours * company.wage_per_hour;
-			System.out.println("Daily wage is " + daily_wage);
-			monthly_salary += daily_wage;
-			no_of_days++;
-		}
-		System.out.println("Monthly Salary for "+company.company_name+" is " + monthly_salary + " for " + no_of_days + " days.");
-		}
-		sc.close();
+			EmployeeWageComputation Dmart = new EmployeeWageComputation("DMart", 100, 100, 20);
+			EmployeeWageComputation Reliance = new EmployeeWageComputation("Reliance", 90, 120, 24);
+			System.out.println("For DMart ");
+			wageBuilder(Dmart.max_no_of_days,Dmart.wage_per_hour,Dmart.max_no_of_hours);
+			System.out.println("For Reliance ");
+			wageBuilder(Reliance.max_no_of_days,Reliance.wage_per_hour,Reliance.max_no_of_hours);
+			
 	}
 
 	private static int employeeHours() {
@@ -66,6 +50,19 @@ public class EmployeeWageComputation {
 			break;
 		}
 		return emp_hours;
+	}
+	private static void wageBuilder(int Max_no_of_days, int wage_per_hour, int max_hours) {
+		int daily_wage, no_of_days = 0, monthly_salary = 0, no_of_hours, total_hours = 0;
+		while (no_of_days < Max_no_of_days && total_hours < max_hours) {
+			no_of_hours = employeeHours();
+			total_hours += no_of_hours;
+			daily_wage = no_of_hours * wage_per_hour;
+			System.out.println("Daily wage is " + daily_wage);
+			monthly_salary += daily_wage;
+			no_of_days++;
+		}
+		System.out.println("Monthly Salary for is " + monthly_salary + " for "
+				+ no_of_days + " days.");
 	}
 
 }
