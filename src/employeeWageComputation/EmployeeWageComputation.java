@@ -1,28 +1,23 @@
 package employeeWageComputation;
 
-import java.util.Random;
+import java.util.*;
 
 public class EmployeeWageComputation implements employeeWageManager{
 
 	private static final int full_hours = 8;
 	private static final int part_hours = 4;
 
-	private CompanyEmpWage[] Company_emp_wage;
-	private int company_number =0;
-	
-	public EmployeeWageComputation() {
-		Company_emp_wage = new CompanyEmpWage[2];
-	}
+	ArrayList<CompanyEmpWage> Company_emp_wage = new ArrayList<CompanyEmpWage>();
 	
 	public void addCompanyEmpWage(String name,int wage, int max_hours,int max_days) {
-		Company_emp_wage[company_number]=new CompanyEmpWage(name,wage,max_hours,max_days);
-		company_number++;
+		CompanyEmpWage cew = new CompanyEmpWage(name,wage,max_hours,max_days);
+		Company_emp_wage.add(cew);
 	}
 	
 	public void computeCompanyEmpWage() {
-		for(int i=0;i<2;i++) {
-			Company_emp_wage[i].setTotalWage(wageBuilder(Company_emp_wage[i]));
-			System.out.println(Company_emp_wage[i]);
+		for(CompanyEmpWage c : Company_emp_wage) {
+			c.setTotalWage(wageBuilder(c));
+			System.out.println(c);
 		}
 	}
 	public static void main(String[] args) {
