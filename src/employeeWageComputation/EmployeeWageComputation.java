@@ -2,10 +2,10 @@ package employeeWageComputation;
 
 import java.util.Random;
 
-public class EmployeeWageComputation {
+public class EmployeeWageComputation implements employeeWageManager{
 
 	private static final int full_hours = 8;
-	private static final int part_hours = 8;
+	private static final int part_hours = 4;
 
 	private CompanyEmpWage[] Company_emp_wage;
 	private int company_number =0;
@@ -90,3 +90,4 @@ class CompanyEmpWage {
 		return "The employee wage for company " + company_name + " is " + getTotalWage();
 	}
 }
+
