@@ -64,25 +64,30 @@ class CompanyEmpWage {
 	public final String company_name;
 	public final int max_no_of_hours,max_no_of_days,wage_per_hour;
 	private int total_wage;
+	String daily_wage;
+	int no_of_hours_in_day=8;
 	
 	CompanyEmpWage(String company_name, int wage_per_hour, int max_no_of_hours, int max_no_of_days) {
 		this.company_name = company_name;
 		this.wage_per_hour = wage_per_hour;
 		this.max_no_of_hours = max_no_of_hours;
 		this.max_no_of_days = max_no_of_days;
+		daily_wage=Integer.toString(wage_per_hour*no_of_hours_in_day);
 	}
 	
 	public void setTotalWage(int total_wage) {
 		this.total_wage=total_wage;
 	}
 	
-	public int getTotalWage() {
-		return total_wage;
+	public Map<Integer,String> getWageMap() {
+		Map<Integer, String> map = new HashMap<Integer,String>();
+		map.put(total_wage,daily_wage);
+		return map;
 	}
 	
 	@Override
 	public String toString() {
-		return "The employee wage for company " + company_name + " is " + getTotalWage();
+		return "The daily wage for company " + company_name + " is " + getWageMap();
 	}
 }
 
